@@ -12,6 +12,14 @@ let score = 20;
 let highScore = 0;
 
 checkElement.addEventListener("click", function () {
+  score -= 1;
+  scoreElement.textContent = score;
+  if (score < 1) {
+    messageElement.textContent = "Oh No! You Lose";
+    document.querySelector("body").style.backgroundColor = "red";
+    this.disabled = true;
+    return;
+  }
   const userGuess = parseInt(userGuessElement.value);
   if (userGuess === randOmNumber) {
     messageElement.textContent = "Correct! You win";
@@ -21,8 +29,6 @@ checkElement.addEventListener("click", function () {
     this.disabled = true;
     return;
   }
-  score -= 1;
-  scoreElement.textContent = score;
   messageElement.textContent =
     userGuess > randOmNumber ? "To High!" : "To Low!";
 });
